@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {EmployeeService} from '../employee.service';
 
 @Component({
   selector: 'app-test',
@@ -32,6 +33,14 @@ import { Component, OnInit } from '@angular/core';
     <div *ngFor="let color of colors">
       <h2>{{color}}</h2>
     </div>
+    <h2>{{'Hello ' + name4}}</h2>
+    <button (click)="fireEvent()">Send Event</button>
+    <h2>{{ name3 | uppercase }}</h2>
+    <h2>{{ 0.25 | currency: 'INR' }}</h2>
+    <h2>Employee List</h2>
+    <ul *ngFor="let employee of employees">
+      <li>{{employee.id}} {{employee.name}} {{employee.age}}</li>
+    </ul>
   `,
   styles: [`
     .text-success {
@@ -51,9 +60,14 @@ export class TestComponent implements OnInit {
   public name2 = '';
   public color2 = 'red';
   public colors = ['red', 'blue', 'green', 'yellow'];
-  constructor() { }
+  @Input('parentData') public name4;
+  @Output() public childEvent = new EventEmitter();
+  public name3 = 'Code Evolution';
+  public employees = [];
+  constructor(private _employeeService: EmployeeService) { }
 
   ngOnInit() {
+    this.employees = this._employeeService.getEmployees();
   }
 
   onClick() {
@@ -66,5 +80,9 @@ export class TestComponent implements OnInit {
 
   logMessage(value) {
     console.log(value);
+  }
+
+  fireEvent() {
+    this.childEvent.emit('Hey angular');
   }
 }
