@@ -38,7 +38,6 @@ import {EmployeeService} from '../employee.service';
     <h2>{{ name3 | uppercase }}</h2>
     <h2>{{ 0.25 | currency: 'INR' }}</h2>
     <h2>Employee List</h2>
-    <h2>{{employees}}</h2>
     <ul *ngFor="let employee of employees">
       <li>{{employee.id}} {{employee.name}} {{employee.age}}</li>
     </ul>
