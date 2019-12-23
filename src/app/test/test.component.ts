@@ -34,10 +34,11 @@ import {EmployeeService} from '../employee.service';
       <h2>{{color}}</h2>
     </div>
     <h2>{{'Hello ' + name4}}</h2>
-    <button (click)="fireEvent()">Send Event</button>
+    <button (click)="fireEvent()">Send Event</button><br>
     <h2>{{ name3 | uppercase }}</h2>
     <h2>{{ 0.25 | currency: 'INR' }}</h2>
     <h2>Employee List</h2>
+    <h2>{{employees}}</h2>
     <ul *ngFor="let employee of employees">
       <li>{{employee.id}} {{employee.name}} {{employee.age}}</li>
     </ul>
@@ -67,7 +68,8 @@ export class TestComponent implements OnInit {
   constructor(private _employeeService: EmployeeService) { }
 
   ngOnInit() {
-    this.employees = this._employeeService.getEmployees();
+    this._employeeService.getEmployees()
+      .subscribe(data => this.employees = data);
   }
 
   onClick() {
