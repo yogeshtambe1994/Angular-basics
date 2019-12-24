@@ -18,7 +18,7 @@ const routes: Routes = [
     ]
   },
   { path: 'employees', component: EmployeeListComponent },
-  { path: "**", component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
