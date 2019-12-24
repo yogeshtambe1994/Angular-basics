@@ -11,5 +11,11 @@
   <h1>Welcome to angular
     {{message}}
   </h1>
-  <app-test (childEvent)="message=$event" [parentData]="name"></app-test>
+ <app-test (childEvent)="message=$event" [parentData]="name"></app-test>
+  <h1>Routing and navigation</h1>
 </div>
+<nav>
+  <a routerLink="/departments" routerLinkActive="active">Departments</a><br>
+  <a routerLink="/employees" routerLinkActive="active">Employees</a>
+</nav>
+<router-outlet></router-outlet>
